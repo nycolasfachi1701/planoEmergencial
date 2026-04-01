@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plano de Emergência Operacional</title>
+<style>
+        body {
+            margin: 0;
+            font-family: "Roboto", "Inter", Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .slide-container {
+            width: 1200px; /* Largura base para o slide */
+            min-height: 675px; /* Proporção 16:9 */
+            background-color: #1a1a1a;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto auto 1fr;
+            gap: 20px;
+            position: relative;
+        }
+        .header {
+            grid-column: 1 / -1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            font-size: 36px;
+            font-weight: bold;
+            color: #ffffff;
+            margin: 0;
+        }
+        .header h2 {
+            font-size: 24px;
+            color: #ff6600;
+            margin: 0;
+        }
+        .header .logo {
+            color: #ff6600;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        .section-title {
+            font-size: 22px;
+            font-weight: bold;
+            color: #ff6600;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .section-title svg {
+            margin-right: 10px;
+        }
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .card {
+            background-color: #2d2d2d;
+            border-radius: 6px;
+            padding: 15px;
+            border: 1px solid #444;
+        }
+        .card.critical {
+            border-left: 4px solid #ff6600;
+        }
+        .card.alert {
+            border-left: 4px solid #ff8c00;
+        }
+        .card-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #ff6600;
+            margin-bottom: 5px;
+        }
+        .card-subtitle {
+            font-size: 16px;
+            font-weight: bold;
+            color: #ff6600;
+            margin-bottom: 5px;
+        }
+        .card-text {
+            font-size: 14px;
+            line-height: 1.4;
+            color: #cccccc;
+        }
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        .checklist-number {
+            background-color: #ff6600;
+            color: #1a1a1a;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 16px;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+        .checklist-content strong {
+            color: #ff6600;
+        }
+        .escalation-flow {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .escalation-step {
+            display: flex;
+            align-items: center;
+        }
+        .escalation-level {
+            background-color: #ff6600;
+            color: #1a1a1a;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 16px;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+        .escalation-details {
+            background-color: #2d2d2d;
+            border-radius: 6px;
+            padding: 10px 15px;
+            flex-grow: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #444;
+        }
+        .escalation-details span {
+            font-size: 14px;
+            color: #cccccc;
+        }
+        .escalation-details strong {
+            color: #ff6600;
+        }
+        .escalation-arrow {
+            color: #ff6600;
+            margin: 0 5px;
+        }
+        .template-box {
+            background-color: #2d2d2d;
+            border-radius: 6px;
+            padding: 15px;
+            border: 1px solid #444;
+            position: relative;
+        }
+        .template-box .warning-bar {
+            background-color: #ff6600;
+            color: #1a1a1a;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .template-box .whatsapp-icon {
+            color: #25d366;
+            font-size: 24px;
+            margin-right: 10px;
+        }
+        .template-box h3 {
+            font-size: 18px;
+            color: #ffffff;
+            margin-top: 0;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .template-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .template-box ul li {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #cccccc;
+        }
+        .template-box ul li strong {
+            color: #ff6600;
+        }
+        .content-area {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            grid-column: 1 / -1;
+        }
+        .left-column, .right-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .editable-text {
+            outline: none;
+            cursor: text;
+        }
+        .editable-text:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="slide-container">
+<div class="header">
+<div contenteditable="true" class="editable-text">
+<h1>PLANO DE EMERGÊNCIA OPERACIONAL</h1>
+<h2>PLANTÕES SUPORTE TECH</h2>
+</div>
+<div contenteditable="true" class="editable-text logo">nst</div>
+</div>
+ 
+        <div class="content-area">
+<div class="left-column">
+<div class="section-title editable-text" contenteditable="true">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ff6600" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-triangle-alert"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+                    GATILHOS DE ATIVAÇÃO
+</div>
+<div class="card-grid">
+<div class="card critical editable-text" contenteditable="true">
+<div class="card-subtitle">CRÍTICO</div>
+<div class="card-title">Bug Fiscal</div>
+<div class="card-text">Falha em processo tributário crítico</div>
+</div>
+<div class="card critical editable-text" contenteditable="true">
+<div class="card-subtitle">CRÍTICO</div>
+<div class="card-title">Sistema Fora</div>
+<div class="card-text">Indisponibilidade total do ambiente</div>
+</div>
+<div class="card alert editable-text" contenteditable="true">
+<div class="card-subtitle">ALERTA</div>
+<div class="card-title">Janela Crítica</div>
+<div class="card-text">Período de fechamento, obrigação fiscal ou tempo determinado para saída de veículo (caminhão parado)</div>
+</div>
+<div class="card alert editable-text" contenteditable="true">
+<div class="card-subtitle">ALERTA</div>
+<div class="card-title">Recorrência</div>
+<div class="card-text">Incidente repetido sem resolução definitiva no mesmo turno de trabalho</div>
+</div>
+</div>
+ 
+                <div class="section-title editable-text" contenteditable="true">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ff6600" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-zap"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                    FLUXO DE ESCALONAMENTO
+</div>
+<div class="escalation-flow">
+<div class="escalation-step editable-text" contenteditable="true">
+<div class="escalation-level">N3</div>
+<div class="escalation-details">
+<span>Suporte</span>
+<span>10 min após resposta inicial</span>
+<strong>+5 min diagnóstico</strong>
+</div>
+</div>
+<div class="escalation-step editable-text" contenteditable="true">
+<div class="escalation-level">N3</div>
+<div class="escalation-details">
+<span>Suporte</span>
+<span>15 min após acionamento</span>
+<strong>Análise aprofundada</strong>
+</div>
+</div>
+<div class="escalation-step editable-text" contenteditable="true">
+<div class="escalation-level">N2</div>
+<div class="escalation-details">
+<span>N3 — Sênior: Resolução técnica <span class="escalation-arrow">→</span> Aprovação/Anda</span>
+</div>
+</div>
+</div>
+</div>
+ 
+            <div class="right-column">
+<div class="section-title editable-text" contenteditable="true">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ff6600" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard-check"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></svg>
+                    CHECKLIST RÁPIDO
+</div>
+<div class="checklist-items">
+<div class="checklist-item editable-text" contenteditable="true">
+<div class="checklist-number">01</div>
+<div class="checklist-content">
+<strong>Identificar Gatilho</strong><br>
+                            Confirmar tipo e criticidade do incidente
+</div>
+</div>
+<div class="checklist-item editable-text" contenteditable="true">
+<div class="checklist-number">02</div>
+<div class="checklist-content">
+<strong>Registrar Chamado</strong><br>
+                            Abrir ticket com logs e prints no sistema
+</div>
+</div>
+<div class="checklist-item editable-text" contenteditable="true">
+<div class="checklist-number">03</div>
+<div class="checklist-content">
+<strong>Notificar via WhatsApp</strong><br>
+                            Enviar template EMERGÊNCIA ATIVA ao grupo
+</div>
+</div>
+<div class="checklist-item editable-text" contenteditable="true">
+<div class="checklist-number">04</div>
+<div class="checklist-content">
+<strong>Escalonar se sem retorno</strong><br>
+                            Subir nível conforme tempo excedido — Envolver Gestor
+</div>
+</div>
+</div>
+ 
+                <div class="section-title editable-text" contenteditable="true">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ff6600" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+                    TEMPLATE DE COMUNICAÇÃO
+</div>
+<div class="template-box editable-text" contenteditable="true">
+<div class="warning-bar">⚠️ USO EXCLUSIVO: FORA DO HORÁRIO NORMAL (PLANTÃO)</div>
+<h3><span class="whatsapp-icon"></span> Template WhatsApp — EMERGÊNCIA</h3>
+<p>🚨 <em>EMERGÊNCIA ATIVA</em> 🚨</p>
+<ul>
+<li><strong>Tipo:</strong> [Bug Fiscal / Sistema Fora / Janela Crítica / Recorrência]</li>
+<li><strong>Cliente:</strong> [Nome]</li>
+<li><strong>Hora:</strong> [HH:MM]</li>
+<li><strong>Responsável N1:</strong> [Nome]</li>
+<li><strong>Status:</strong> Em triagem</li>
+<li><strong>Gestor Atendável N1:</strong> [Nome] acionado</li>
+<li><strong>Gestor Atendimento:</strong> [Nome] acionado</li>
+<li><strong>Gestor Tech:</strong> [Nome] notificado</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
