@@ -236,7 +236,7 @@
 <h1>PLANO DE EMERGÊNCIA OPERACIONAL</h1>
 <h2>PLANTÕES SUPORTE TECH</h2>
 </div>
-<div contenteditable="true" class="editable-text logo">nst</div>
+<div contenteditable="true" class="editable-text logo">nstech</div>
 </div>
  
         <div class="content-area">
@@ -247,7 +247,7 @@
 </div>
 <div class="card-grid">
 <div class="card critical editable-text" contenteditable="true">
-<div class="card-subtitle">CRÍTICO</div>
+<div class="card-subtitle">Alerta</div>
 <div class="card-title">Bug Fiscal</div>
 <div class="card-text">Falha em processo tributário crítico</div>
 </div>
@@ -257,7 +257,7 @@
 <div class="card-text">Indisponibilidade total do ambiente</div>
 </div>
 <div class="card alert editable-text" contenteditable="true">
-<div class="card-subtitle">ALERTA</div>
+<div class="card-subtitle">CRÍTICO</div>
 <div class="card-title">Janela Crítica</div>
 <div class="card-text">Período de fechamento, obrigação fiscal ou tempo determinado para saída de veículo (caminhão parado)</div>
 </div>
@@ -274,25 +274,25 @@
 </div>
 <div class="escalation-flow">
 <div class="escalation-step editable-text" contenteditable="true">
-<div class="escalation-level">N3</div>
+<div class="escalation-level">N1</div>
 <div class="escalation-details">
-<span>Suporte</span>
+<span>Suporte/Plantonista</span>
 <span>10 min após resposta inicial</span>
 <strong>+5 min diagnóstico</strong>
 </div>
 </div>
 <div class="escalation-step editable-text" contenteditable="true">
-<div class="escalation-level">N3</div>
+<div class="escalation-level">N2</div>
 <div class="escalation-details">
-<span>Suporte</span>
+<span>Suporte/Analista</span>
 <span>15 min após acionamento</span>
-<strong>Análise aprofundada</strong>
+<strong>Análise detalhada</strong>
 </div>
 </div>
 <div class="escalation-step editable-text" contenteditable="true">
-<div class="escalation-level">N2</div>
+<div class="escalation-level">N3</div>
 <div class="escalation-details">
-<span>N3 — Sênior: Resolução técnica <span class="escalation-arrow">→</span> Aprovação/Anda</span>
+<span>N3 — SRE: Resolução técnica <span class="escalation-arrow">→</span>Análise e ajuste paliativo</span>
 </div>
 </div>
 </div>
@@ -308,28 +308,28 @@
 <div class="checklist-number">01</div>
 <div class="checklist-content">
 <strong>Identificar Gatilho</strong><br>
-                            Confirmar tipo e criticidade do incidente
+                            Confirmar tipo e criticidade do incidente (Validar situação com o cliente/Verificar evidências).
 </div>
 </div>
 <div class="checklist-item editable-text" contenteditable="true">
 <div class="checklist-number">02</div>
 <div class="checklist-content">
 <strong>Registrar Chamado</strong><br>
-                            Abrir ticket com logs e prints no sistema
+                            Abrir ticket com logs, prints no sistema e evidências.
 </div>
 </div>
 <div class="checklist-item editable-text" contenteditable="true">
 <div class="checklist-number">03</div>
 <div class="checklist-content">
 <strong>Notificar via WhatsApp</strong><br>
-                            Enviar template EMERGÊNCIA ATIVA ao grupo
+                            Enviar template EMERGÊNCIA ATIVA ao grupo.
 </div>
 </div>
 <div class="checklist-item editable-text" contenteditable="true">
 <div class="checklist-number">04</div>
 <div class="checklist-content">
 <strong>Escalonar se sem retorno</strong><br>
-                            Subir nível conforme tempo excedido — Envolver Gestor
+                            Subir nível conforme tempo excedido — Envolver Gestor quando não ocorrer retorno em tempo hábil do nível acionado.
 </div>
 </div>
 </div>
@@ -340,7 +340,7 @@
 </div>
 <div class="template-box editable-text" contenteditable="true">
 <div class="warning-bar">⚠️ USO EXCLUSIVO: FORA DO HORÁRIO NORMAL (PLANTÃO)</div>
-<h3><span class="whatsapp-icon"></span> Template WhatsApp — EMERGÊNCIA</h3>
+<h3><span class="whatsapp-icon"></span> Padrão Acionadomento via Wpp — EMERGÊNCIA</h3>
 <p>🚨 <em>EMERGÊNCIA ATIVA</em> 🚨</p>
 <ul>
 <li><strong>Tipo:</strong> [Bug Fiscal / Sistema Fora / Janela Crítica / Recorrência]</li>
@@ -348,7 +348,6 @@
 <li><strong>Hora:</strong> [HH:MM]</li>
 <li><strong>Responsável N1:</strong> [Nome]</li>
 <li><strong>Status:</strong> Em triagem</li>
-<li><strong>Gestor Atendável N1:</strong> [Nome] acionado</li>
 <li><strong>Gestor Atendimento:</strong> [Nome] acionado</li>
 <li><strong>Gestor Tech:</strong> [Nome] notificado</li>
 </ul>
