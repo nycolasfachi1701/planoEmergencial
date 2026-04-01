@@ -5,355 +5,715 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Plano de Emergência Operacional</title>
 <style>
-        body {
-            margin: 0;
-            font-family: "Roboto", "Inter", Arial, sans-serif;
-            background-color: #1a1a1a;
-            color: #ffffff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-        .slide-container {
-            width: 1200px; /* Largura base para o slide */
-            min-height: 675px; /* Proporção 16:9 */
-            background-color: #1a1a1a;
-            border-radius: 8px;
-            padding: 30px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: auto auto 1fr;
-            gap: 20px;
-            position: relative;
-        }
-        .header {
-            grid-column: 1 / -1;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        .header h1 {
-            font-size: 36px;
-            font-weight: bold;
-            color: #ffffff;
-            margin: 0;
-        }
-        .header h2 {
-            font-size: 24px;
-            color: #ff6600;
-            margin: 0;
-        }
-        .header .logo {
-            color: #ff6600;
-            font-weight: bold;
-            font-size: 20px;
-        }
-        .section-title {
-            font-size: 22px;
-            font-weight: bold;
-            color: #ff6600;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-        }
-        .section-title svg {
-            margin-right: 10px;
-        }
-        .card-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-        .card {
-            background-color: #2d2d2d;
-            border-radius: 6px;
-            padding: 15px;
-            border: 1px solid #444;
-        }
-        .card.critical {
-            border-left: 4px solid #ff6600;
-        }
-        .card.alert {
-            border-left: 4px solid #ff8c00;
-        }
-        .card-title {
-            font-size: 18px;
-            font-weight: bold;
-            color: #ff6600;
-            margin-bottom: 5px;
-        }
-        .card-subtitle {
-            font-size: 16px;
-            font-weight: bold;
-            color: #ff6600;
-            margin-bottom: 5px;
-        }
-        .card-text {
-            font-size: 14px;
-            line-height: 1.4;
-            color: #cccccc;
-        }
-        .checklist-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 15px;
-        }
-        .checklist-number {
-            background-color: #ff6600;
-            color: #1a1a1a;
-            border-radius: 50%;
-            width: 28px;
-            height: 28px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-weight: bold;
-            font-size: 16px;
-            margin-right: 10px;
-            flex-shrink: 0;
-        }
-        .checklist-content strong {
-            color: #ff6600;
-        }
-        .escalation-flow {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        .escalation-step {
-            display: flex;
-            align-items: center;
-        }
-        .escalation-level {
-            background-color: #ff6600;
-            color: #1a1a1a;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-weight: bold;
-            font-size: 16px;
-            margin-right: 10px;
-            flex-shrink: 0;
-        }
-        .escalation-details {
-            background-color: #2d2d2d;
-            border-radius: 6px;
-            padding: 10px 15px;
-            flex-grow: 1;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border: 1px solid #444;
-        }
-        .escalation-details span {
-            font-size: 14px;
-            color: #cccccc;
-        }
-        .escalation-details strong {
-            color: #ff6600;
-        }
-        .escalation-arrow {
-            color: #ff6600;
-            margin: 0 5px;
-        }
-        .template-box {
-            background-color: #2d2d2d;
-            border-radius: 6px;
-            padding: 15px;
-            border: 1px solid #444;
-            position: relative;
-        }
-        .template-box .warning-bar {
-            background-color: #ff6600;
-            color: #1a1a1a;
-            font-size: 12px;
-            font-weight: bold;
-            padding: 5px 10px;
-            border-radius: 4px;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-        .template-box .whatsapp-icon {
-            color: #25d366;
-            font-size: 24px;
-            margin-right: 10px;
-        }
-        .template-box h3 {
-            font-size: 18px;
-            color: #ffffff;
-            margin-top: 0;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-        }
-        .template-box ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .template-box ul li {
-            font-size: 14px;
-            margin-bottom: 5px;
-            color: #cccccc;
-        }
-        .template-box ul li strong {
-            color: #ff6600;
-        }
-        .content-area {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            grid-column: 1 / -1;
-        }
-        .left-column, .right-column {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        .editable-text {
-            outline: none;
-            cursor: text;
-        }
-        .editable-text:hover {
-            background-color: rgba(255, 255, 255, 0.05);
-        }
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+
+  :root {
+    --orange: #ff6600;
+    --orange-dim: #cc5200;
+    --orange-glow: rgba(255, 102, 0, 0.18);
+    --bg: #111111;
+    --surface: #1c1c1c;
+    --surface2: #242424;
+    --border: #333333;
+    --text: #e8e8e8;
+    --muted: #888888;
+    --green: #22c55e;
+    --red: #ef4444;
+    --yellow: #eab308;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Roboto', 'DM Sans', sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 32px 24px;
+    background-image:
+      radial-gradient(ellipse 60% 40% at 80% 10%, rgba(255,102,0,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 30% at 10% 90%, rgba(255,102,0,0.04) 0%, transparent 50%);
+  }
+
+  .page {
+    max-width: 1240px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 20px;
+    position: relative;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; left: 0;
+    width: 180px; height: 2px;
+    background: var(--orange);
+  }
+  .header-left h1 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 38px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+  .header-left h1 span { color: var(--orange); }
+  .header-left h2 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+  .logo {
+    font-family: 'Roboto', sans-serif;
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    color: var(--orange);
+    text-transform: uppercase;
+  }
+
+  /* ── SECTION LABEL ── */
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 14px;
+  }
+  .section-label::before {
+    content: '';
+    display: inline-block;
+    width: 3px; height: 16px;
+    background: var(--orange);
+    border-radius: 2px;
+  }
+
+  /* ── TOP ROW: TRIGGERS + CHECKLIST ── */
+  .top-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  /* TRIGGERS */
+  .triggers-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .trigger-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .trigger-card:hover { border-color: var(--orange); }
+  .trigger-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px; height: 100%;
+  }
+  .trigger-card.critical::before { background: var(--red); }
+  .trigger-card.alert::before { background: var(--yellow); }
+  .trigger-badge {
+    font-family: 'Roboto', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 3px;
+    display: inline-block;
+    margin-bottom: 6px;
+  }
+  .trigger-card.critical .trigger-badge { background: rgba(239,68,68,0.15); color: var(--red); }
+  .trigger-card.alert .trigger-badge { background: rgba(234,179,8,0.15); color: var(--yellow); }
+  .trigger-title {
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+  .trigger-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  /* CHECKLIST */
+  .checklist {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .checklist-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+    transition: border-color 0.2s;
+  }
+  .checklist-item:hover { border-color: var(--orange); }
+  .check-num {
+    font-family: 'Roboto', sans-serif;
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--orange);
+    line-height: 1;
+    min-width: 28px;
+    margin-top: 1px;
+  }
+  .check-body strong {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 2px;
+  }
+  .check-body span {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  /* ── TIMELINE ── */
+  .timeline-section { width: 100%; }
+  .timeline-track {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+  }
+
+  /* horizontal connector line */
+  .timeline-track::before {
+    content: '';
+    position: absolute;
+    top: 28px;
+    left: calc(12% + 14px);
+    right: calc(12% + 14px);
+    height: 2px;
+    background: linear-gradient(90deg, var(--orange) 0%, var(--orange-dim) 100%);
+    z-index: 0;
+  }
+
+  .timeline-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .timeline-dot {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: var(--surface2);
+    border: 2px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    cursor: default;
+    flex-shrink: 0;
+  }
+  .timeline-step:hover .timeline-dot {
+    border-color: var(--orange);
+    box-shadow: 0 0 18px var(--orange-glow);
+  }
+  .timeline-dot .dot-inner {
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    color: var(--orange);
+    text-align: center;
+    line-height: 1.1;
+  }
+
+  /* FIRST step — Abertura — highlighted */
+  .timeline-step.step-0 .timeline-dot {
+    border-color: var(--orange);
+    background: var(--orange);
+    box-shadow: 0 0 20px rgba(255,102,0,0.35);
+  }
+  .timeline-step.step-0 .timeline-dot .dot-inner { color: #111; }
+
+  .timeline-card {
+    margin-top: 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px;
+    width: 100%;
+    text-align: left;
+    transition: border-color 0.2s;
+    position: relative;
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+  }
+  .timeline-step:hover .timeline-card { border-color: var(--orange); }
+
+  .timeline-time {
+    font-family: 'Roboto', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 3px;
+    display: inline-block;
+    margin-bottom: 8px;
+    align-self: flex-start;
+  }
+  .step-0 .timeline-time { background: rgba(255,102,0,0.2); color: var(--orange); }
+  .step-1 .timeline-time { background: rgba(234,179,8,0.12); color: var(--yellow); }
+  .step-2 .timeline-time { background: rgba(234,179,8,0.15); color: #f59e0b; }
+  .step-3 .timeline-time { background: rgba(239,68,68,0.12); color: #f87171; }
+  .step-4 .timeline-time { background: rgba(239,68,68,0.2); color: var(--red); }
+
+  .timeline-role {
+    font-family: 'Roboto', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+  .timeline-action {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.4;
+    flex: 1;
+  }
+  .timeline-escalate {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 10px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--orange);
+  }
+  .timeline-escalate svg { flex-shrink: 0; }
+
+  /* escalation badge for steps 3+ */
+  .badge-critical {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(239,68,68,0.12);
+    border: 1px solid rgba(239,68,68,0.3);
+    color: var(--red);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 2px 7px;
+    border-radius: 3px;
+    margin-top: 8px;
+    align-self: flex-start;
+  }
+
+  /* ── BOTTOM ROW: ESCALATION FLOW + TEMPLATE ── */
+  .bottom-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  /* FLOW */
+  .flow-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .flow-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .flow-level {
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+    font-weight: 900;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    border: 2px solid var(--orange);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--orange);
+    flex-shrink: 0;
+  }
+  .flow-card {
+    flex: 1;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 10px 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+  }
+  .flow-card .fc-role { color: var(--text); font-weight: 500; }
+  .flow-card .fc-time { color: var(--muted); font-size: 12px; }
+  .flow-card .fc-action { color: var(--orange); font-size: 12px; font-weight: 600; }
+  .flow-arrow {
+    color: var(--orange);
+    font-size: 18px;
+    align-self: center;
+    flex-shrink: 0;
+    text-align: center;
+    margin-left: 18px;
+  }
+
+  /* TEMPLATE */
+  .template-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .template-warning {
+    background: var(--orange);
+    color: #111;
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 7px 14px;
+    text-align: center;
+  }
+  .template-body {
+    padding: 16px;
+  }
+  .template-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .wpp-icon {
+    width: 28px; height: 28px;
+    background: #22c55e;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .template-header span {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 1px;
+  }
+  .template-msg {
+    background: var(--surface2);
+    border-radius: 6px;
+    padding: 12px 14px;
+    font-size: 12.5px;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .template-msg .em-title {
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--orange);
+    display: block;
+    margin-bottom: 8px;
+  }
+  .template-msg .field strong { color: var(--orange); }
+  .template-msg .field { display: block; margin-bottom: 2px; }
+  .template-usage {
+    font-size: 10px;
+    color: var(--muted);
+    text-align: right;
+    margin-top: 10px;
+    font-style: italic;
+  }
+
+  /* ── EDITABLE ── */
+  [contenteditable="true"] { outline: none; cursor: text; }
+  [contenteditable="true"]:hover { background: rgba(255,255,255,0.03); border-radius: 4px; }
+  [contenteditable="true"]:focus { background: rgba(255,102,0,0.05); border-radius: 4px; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1000px) {
+    .timeline-track { grid-template-columns: repeat(5, 1fr); gap: 8px; }
+    .timeline-card { padding: 10px; min-height: 170px; }
+    .timeline-role { font-size: 14px; }
+    .timeline-action { font-size: 11px; }
+  }
+  @media (max-width: 900px) {
+    .top-row, .bottom-row { grid-template-columns: 1fr; }
+    .timeline-track { grid-template-columns: 1fr; gap: 12px; }
+    .timeline-track::before { display: none; }
+    .timeline-card { min-height: auto; }
+    .flow-arrow { margin-left: 0; }
+  }
+  @media (max-width: 600px) {
+    .triggers-grid { grid-template-columns: 1fr; }
+  }
 </style>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-<div class="slide-container">
-<div class="header">
-<div contenteditable="true" class="editable-text">
-<h1>PLANO DE EMERGÊNCIA OPERACIONAL</h1>
-<h2>PLANTÕES SUPORTE TECH</h2>
-</div>
-<div contenteditable="true" class="editable-text logo">nstech</div>
-</div>
- 
-        <div class="content-area">
-<div class="left-column">
-<div class="section-title editable-text" contenteditable="true">
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ff6600" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-triangle-alert"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
-                    GATILHOS DE ATIVAÇÃO
-</div>
-<div class="card-grid">
-<div class="card critical editable-text" contenteditable="true">
-<div class="card-subtitle">Alerta</div>
-<div class="card-title">Bug Fiscal</div>
-<div class="card-text">Falha em processo tributário crítico</div>
-</div>
-<div class="card critical editable-text" contenteditable="true">
-<div class="card-subtitle">CRÍTICO</div>
-<div class="card-title">Sistema Fora</div>
-<div class="card-text">Indisponibilidade total do ambiente</div>
-</div>
-<div class="card alert editable-text" contenteditable="true">
-<div class="card-subtitle">CRÍTICO</div>
-<div class="card-title">Janela Crítica</div>
-<div class="card-text">Período de fechamento, obrigação fiscal ou tempo determinado para saída de veículo (caminhão parado)</div>
-</div>
-<div class="card alert editable-text" contenteditable="true">
-<div class="card-subtitle">ALERTA</div>
-<div class="card-title">Recorrência</div>
-<div class="card-text">Incidente repetido sem resolução definitiva no mesmo turno de trabalho</div>
-</div>
-</div>
- 
-                <div class="section-title editable-text" contenteditable="true">
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ff6600" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-zap"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                    FLUXO DE ESCALONAMENTO
-</div>
-<div class="escalation-flow">
-<div class="escalation-step editable-text" contenteditable="true">
-<div class="escalation-level">N1</div>
-<div class="escalation-details">
-<span>Suporte/Plantonista</span>
-<span>10 min após resposta inicial</span>
-<strong>+5 min diagnóstico</strong>
-</div>
-</div>
-<div class="escalation-step editable-text" contenteditable="true">
-<div class="escalation-level">N2</div>
-<div class="escalation-details">
-<span>Suporte/Analista</span>
-<span>15 min após acionamento</span>
-<strong>Análise detalhada</strong>
-</div>
-</div>
-<div class="escalation-step editable-text" contenteditable="true">
-<div class="escalation-level">N3</div>
-<div class="escalation-details">
-<span>N3 — SRE: Resolução técnica <span class="escalation-arrow">→</span>Análise e ajuste paliativo/definitivo</span>
-</div>
-</div>
-</div>
-</div>
- 
-            <div class="right-column">
-<div class="section-title editable-text" contenteditable="true">
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ff6600" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard-check"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></svg>
-                    CHECKLIST RÁPIDO
-</div>
-<div class="checklist-items">
-<div class="checklist-item editable-text" contenteditable="true">
-<div class="checklist-number">01</div>
-<div class="checklist-content">
-<strong>Identificar Gatilho</strong><br>
-                            Confirmar tipo e criticidade do incidente (Validar situação com o cliente/Verificar evidências).
-</div>
-</div>
-<div class="checklist-item editable-text" contenteditable="true">
-<div class="checklist-number">02</div>
-<div class="checklist-content">
-<strong>Registrar Chamado</strong><br>
-                            Abrir ticket com logs, prints no sistema e evidências.
-</div>
-</div>
-<div class="checklist-item editable-text" contenteditable="true">
-<div class="checklist-number">03</div>
-<div class="checklist-content">
-<strong>Notificar via WhatsApp</strong><br>
-                            Enviar template EMERGÊNCIA ATIVA ao grupo.
-</div>
-</div>
-<div class="checklist-item editable-text" contenteditable="true">
-<div class="checklist-number">04</div>
-<div class="checklist-content">
-<strong>Escalonar se sem retorno</strong><br>
-                            Subir nível conforme tempo excedido — Envolver Gestor quando não ocorrer retorno em tempo hábil do nível acionado.
-</div>
-</div>
-</div>
- 
-                <div class="section-title editable-text" contenteditable="true">
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ff6600" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
-                    TEMPLATE DE COMUNICAÇÃO
-</div>
-<div class="template-box editable-text" contenteditable="true">
-<div class="warning-bar">⚠️ USO EXCLUSIVO: FORA DO HORÁRIO NORMAL (PLANTÃO)</div>
-<h3><span class="whatsapp-icon"></span> Padrão Acionadomento via Wpp — EMERGÊNCIA</h3>
-<p>🚨 <em>EMERGÊNCIA ATIVA</em> 🚨</p>
-<ul>
-<li><strong>Tipo:</strong> [Bug Fiscal / Sistema Fora / Janela Crítica / Recorrência]</li>
-<li><strong>Cliente:</strong> [Nome]</li>
-<li><strong>Hora:</strong> [HH:MM]</li>
-<li><strong>Responsável N1:</strong> [Nome]</li>
-<li><strong>Status:</strong> Em triagem</li>
-<li><strong>Gestor Atendimento:</strong> [Nome] acionado</li>
-<li><strong>Gestor Tech:</strong> [Nome] notificado</li>
-</ul>
-</div>
-</div>
-</div>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-left" contenteditable="true">
+      <h1>PLANO DE <span>EMERGÊNCIA</span> OPERACIONAL</h1>
+      <h2>Plantões · Suporte Tech</h2>
+    </div>
+    <div class="logo" contenteditable="true">nstech</div>
+  </div>
+
+  <!-- TOP ROW -->
+  <div class="top-row">
+
+    <!-- TRIGGERS -->
+    <div>
+      <div class="section-label">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+        Gatilhos de Ativação
+      </div>
+      <div class="triggers-grid">
+        <div class="trigger-card critical" contenteditable="true">
+          <span class="trigger-badge">Alerta</span>
+          <div class="trigger-title">Bug Fiscal</div>
+          <div class="trigger-desc">Falha em processo tributário crítico</div>
+        </div>
+        <div class="trigger-card critical" contenteditable="true">
+          <span class="trigger-badge">Crítico</span>
+          <div class="trigger-title">Sistema Fora</div>
+          <div class="trigger-desc">Indisponibilidade total do ambiente</div>
+        </div>
+        <div class="trigger-card alert" contenteditable="true">
+          <span class="trigger-badge">Crítico</span>
+          <div class="trigger-title">Janela Crítica</div>
+          <div class="trigger-desc">Fechamento, obrigação fiscal ou caminhão parado</div>
+        </div>
+        <div class="trigger-card alert" contenteditable="true">
+          <span class="trigger-badge">Alerta</span>
+          <div class="trigger-title">Recorrência</div>
+          <div class="trigger-desc">Incidente repetido sem resolução definitiva no mesmo turno</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHECKLIST -->
+    <div>
+      <div class="section-label">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></svg>
+        Checklist Rápido
+      </div>
+      <div class="checklist">
+        <div class="checklist-item" contenteditable="true">
+          <span class="check-num">01</span>
+          <div class="check-body">
+            <strong>Identificar Gatilho</strong>
+            <span>Confirmar tipo e criticidade. Validar com o cliente e coletar evidências.</span>
+          </div>
+        </div>
+        <div class="checklist-item" contenteditable="true">
+          <span class="check-num">02</span>
+          <div class="check-body">
+            <strong>Abrir Chamado de Emergência</strong>
+            <span>Registrar ticket com logs, prints e evidências no sistema.</span>
+          </div>
+        </div>
+        <div class="checklist-item" contenteditable="true">
+          <span class="check-num">03</span>
+          <div class="check-body">
+            <strong>Notificar via WhatsApp</strong>
+            <span>Enviar template EMERGÊNCIA ATIVA ao grupo de plantão.</span>
+          </div>
+        </div>
+        <div class="checklist-item" contenteditable="true">
+          <span class="check-num">04</span>
+          <div class="check-body">
+            <strong>Escalonar se sem retorno</strong>
+            <span>Subir nível conforme tempo excedido. Envolver Gestor quando necessário.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIMELINE -->
+  <div class="timeline-section">
+    <div class="section-label">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      Linha do Tempo de Escalonamento
+    </div>
+    <div class="timeline-track">
+
+      <!-- STEP 0 -->
+      <div class="timeline-step step-0">
+        <div class="timeline-dot"><div class="dot-inner">🚨</div></div>
+        <div class="timeline-card" contenteditable="true">
+          <span class="timeline-time">T+0 — Abertura</span>
+          <div class="timeline-role">Chamado Aberto</div>
+          <div class="timeline-action">Incidente identificado, chamado de emergência criado e grupo de plantão notificado via WhatsApp.</div>
+        </div>
+      </div>
+
+      <!-- STEP 1 -->
+      <div class="timeline-step step-1">
+        <div class="timeline-dot"><div class="dot-inner">N1</div></div>
+        <div class="timeline-card" contenteditable="true">
+          <span class="timeline-time">T+10 min</span>
+          <div class="timeline-role">Suporte N1 / Plantonista</div>
+          <div class="timeline-action">Entrar em contato com o cliente, validar a emergência e coletar todas as informações necessárias para diagnóstico.</div>
+        </div>
+      </div>
+
+      <!-- STEP 2 -->
+      <div class="timeline-step step-2">
+        <div class="timeline-dot"><div class="dot-inner">SRE</div></div>
+        <div class="timeline-card" contenteditable="true">
+          <span class="timeline-time">T+15 min</span>
+          <div class="timeline-role">SRE / N3 Técnico</div>
+          <div class="timeline-action">Sem solução em 15 min → repasse direto ao SRE para análise técnica e ajuste paliativo ou definitivo.</div>
+          <div class="timeline-escalate">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 11 21 7 17 3"/><line x1="21" y1="7" x2="9" y2="7"/><polyline points="7 21 3 17 7 13"/><line x1="15" y1="17" x2="3" y2="17"/></svg>
+            Repasse automático ao SRE
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 3 -->
+      <div class="timeline-step step-3">
+        <div class="timeline-dot"><div class="dot-inner">LID</div></div>
+        <div class="timeline-card" contenteditable="true">
+          <span class="timeline-time">T+30 min</span>
+          <div class="timeline-role">Líderes de Suporte + Heads + VP</div>
+          <div class="timeline-action">Sem solução em 30 min → escalação para líderes de suporte, grupo de emergências, todos os Heads e o VP.</div>
+          <div class="badge-critical">
+            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+            Grupo de Emergências ativado
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 4 -->
+      <div class="timeline-step step-4">
+        <div class="timeline-dot"><div class="dot-inner">COO</div></div>
+        <div class="timeline-card" contenteditable="true">
+          <span class="timeline-time">T+60 min</span>
+          <div class="timeline-role">COO</div>
+          <div class="timeline-action">Sem solução em 60 min → escalação imediata ao COO para decisão executiva e gestão de crise.</div>
+          <div class="badge-critical">
+            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+            Nível executivo
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BOTTOM ROW -->
+  <div class="bottom-row">
+
+    <!-- ESCALATION FLOW -->
+    <div>
+      <div class="section-label">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        Fluxo de Escalonamento
+      </div>
+      <div class="flow-list">
+        <div class="flow-row">
+          <div class="flow-level">N1</div>
+          <div class="flow-card" contenteditable="true">
+            <span class="fc-role">Suporte / Plantonista</span>
+            <span class="fc-time">até 10 min</span>
+            <span class="fc-action">+5 min diagnóstico</span>
+          </div>
+        </div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-row">
+          <div class="flow-level">N2</div>
+          <div class="flow-card" contenteditable="true">
+            <span class="fc-role">Suporte / Analista</span>
+            <span class="fc-time">até 15 min</span>
+            <span class="fc-action">Análise detalhada</span>
+          </div>
+        </div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-row">
+          <div class="flow-level">N3</div>
+          <div class="flow-card" contenteditable="true">
+            <span class="fc-role">SRE — Resolução Técnica</span>
+            <span class="fc-time">até 30 min</span>
+            <span class="fc-action">Ajuste paliativo/definitivo</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TEMPLATE -->
+    <div>
+      <div class="section-label">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+        Template de Comunicação
+      </div>
+      <div class="template-box">
+        <div class="template-warning">⚠️ USO EXCLUSIVO FORA DO HORÁRIO NORMAL — PLANTÃO</div>
+        <div class="template-body">
+          <div class="template-header">
+            <div class="wpp-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+            </div>
+            <span>Padrão de Acionamento via WhatsApp — EMERGÊNCIA</span>
+          </div>
+          <div class="template-msg" contenteditable="true">
+            <span class="em-title">🚨 EMERGÊNCIA ATIVA 🚨</span>
+            <span class="field"><strong>Tipo:</strong> [Bug Fiscal / Sistema Fora / Janela Crítica / Recorrência]</span>
+            <span class="field"><strong>Cliente:</strong> [Nome]</span>
+            <span class="field"><strong>Hora:</strong> [HH:MM]</span>
+            <span class="field"><strong>Responsável N1:</strong> [Nome]</span>
+            <span class="field"><strong>Status:</strong> Em triagem</span>
+            <span class="field"><strong>Gestor Atendimento:</strong> [Nome] acionado</span>
+            <span class="field"><strong>Gestor Tech:</strong> [Nome] notificado</span>
+          </div>
+          <div class="template-usage">Preencha todos os campos antes de enviar ao grupo</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </div>
 </body>
 </html>
