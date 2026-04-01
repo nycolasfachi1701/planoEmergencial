@@ -463,11 +463,6 @@
     font-style: italic;
   }
 
-  /* ── EDITABLE ── */
-  [contenteditable="true"] { outline: none; cursor: text; }
-  [contenteditable="true"]:hover { background: rgba(255,255,255,0.03); border-radius: 4px; }
-  [contenteditable="true"]:focus { background: rgba(255,102,0,0.05); border-radius: 4px; }
-
   /* ── RESPONSIVE ── */
   @media (max-width: 1000px) {
     .timeline-track { grid-template-columns: repeat(5, 1fr); gap: 8px; }
@@ -492,11 +487,11 @@
 
   <!-- HEADER -->
   <div class="header">
-    <div class="header-left" contenteditable="true">
+    <div class="header-left">
       <h1>PLANO DE <span>EMERGÊNCIA</span> OPERACIONAL</h1>
       <h2>Plantões · Suporte Tech</h2>
     </div>
-    <div class="logo" contenteditable="true">nstech</div>
+    <div class="logo">nstech</div>
   </div>
 
   <!-- TOP ROW -->
@@ -509,22 +504,22 @@
         Gatilhos de Ativação
       </div>
       <div class="triggers-grid">
-        <div class="trigger-card critical" contenteditable="true">
+        <div class="trigger-card critical">
           <span class="trigger-badge">Alerta</span>
           <div class="trigger-title">Bug Fiscal</div>
           <div class="trigger-desc">Falha em processo tributário crítico</div>
         </div>
-        <div class="trigger-card critical" contenteditable="true">
+        <div class="trigger-card critical">
           <span class="trigger-badge">Crítico</span>
           <div class="trigger-title">Sistema Fora</div>
           <div class="trigger-desc">Indisponibilidade total do ambiente</div>
         </div>
-        <div class="trigger-card alert" contenteditable="true">
+        <div class="trigger-card alert">
           <span class="trigger-badge">Crítico</span>
           <div class="trigger-title">Janela Crítica</div>
           <div class="trigger-desc">Fechamento, obrigação fiscal ou caminhão parado</div>
         </div>
-        <div class="trigger-card alert" contenteditable="true">
+        <div class="trigger-card alert">
           <span class="trigger-badge">Alerta</span>
           <div class="trigger-title">Recorrência</div>
           <div class="trigger-desc">Incidente repetido sem resolução definitiva no mesmo turno</div>
@@ -539,28 +534,28 @@
         Checklist Rápido
       </div>
       <div class="checklist">
-        <div class="checklist-item" contenteditable="true">
+        <div class="checklist-item">
           <span class="check-num">01</span>
           <div class="check-body">
             <strong>Identificar Gatilho</strong>
             <span>Confirmar tipo e criticidade. Validar com o cliente e coletar evidências.</span>
           </div>
         </div>
-        <div class="checklist-item" contenteditable="true">
+        <div class="checklist-item">
           <span class="check-num">02</span>
           <div class="check-body">
             <strong>Abrir Chamado de Emergência</strong>
             <span>Registrar ticket com logs, prints e evidências no sistema.</span>
           </div>
         </div>
-        <div class="checklist-item" contenteditable="true">
+        <div class="checklist-item">
           <span class="check-num">03</span>
           <div class="check-body">
             <strong>Notificar via WhatsApp</strong>
             <span>Enviar template EMERGÊNCIA ATIVA ao grupo de plantão.</span>
           </div>
         </div>
-        <div class="checklist-item" contenteditable="true">
+        <div class="checklist-item">
           <span class="check-num">04</span>
           <div class="check-body">
             <strong>Escalonar se sem retorno</strong>
@@ -582,7 +577,7 @@
       <!-- STEP 0 -->
       <div class="timeline-step step-0">
         <div class="timeline-dot"><div class="dot-inner">🚨</div></div>
-        <div class="timeline-card" contenteditable="true">
+        <div class="timeline-card">
           <span class="timeline-time">T+0 — Abertura</span>
           <div class="timeline-role">Chamado Aberto</div>
           <div class="timeline-action">Incidente identificado, chamado de emergência criado e grupo de plantão notificado via WhatsApp.</div>
@@ -592,7 +587,7 @@
       <!-- STEP 1 -->
       <div class="timeline-step step-1">
         <div class="timeline-dot"><div class="dot-inner">N1</div></div>
-        <div class="timeline-card" contenteditable="true">
+        <div class="timeline-card">
           <span class="timeline-time">T+10 min</span>
           <div class="timeline-role">Suporte N1 / Plantonista</div>
           <div class="timeline-action">Entrar em contato com o cliente, validar a emergência e coletar todas as informações necessárias para diagnóstico.</div>
@@ -602,7 +597,7 @@
       <!-- STEP 2 -->
       <div class="timeline-step step-2">
         <div class="timeline-dot"><div class="dot-inner">SRE</div></div>
-        <div class="timeline-card" contenteditable="true">
+        <div class="timeline-card">
           <span class="timeline-time">T+15 min</span>
           <div class="timeline-role">SRE / N3 Técnico</div>
           <div class="timeline-action">Sem solução em 15 min → repasse direto ao SRE para análise técnica e ajuste paliativo ou definitivo.</div>
@@ -616,7 +611,7 @@
       <!-- STEP 3 -->
       <div class="timeline-step step-3">
         <div class="timeline-dot"><div class="dot-inner">LID</div></div>
-        <div class="timeline-card" contenteditable="true">
+        <div class="timeline-card">
           <span class="timeline-time">T+30 min</span>
           <div class="timeline-role">Líderes de Suporte + Heads + VP</div>
           <div class="timeline-action">Sem solução em 30 min → escalação para líderes de suporte, grupo de emergências, todos os Heads e o VP.</div>
@@ -630,7 +625,7 @@
       <!-- STEP 4 -->
       <div class="timeline-step step-4">
         <div class="timeline-dot"><div class="dot-inner">COO</div></div>
-        <div class="timeline-card" contenteditable="true">
+        <div class="timeline-card">
           <span class="timeline-time">T+60 min</span>
           <div class="timeline-role">COO</div>
           <div class="timeline-action">Sem solução em 60 min → escalação imediata ao COO para decisão executiva e gestão de crise.</div>
@@ -656,7 +651,7 @@
       <div class="flow-list">
         <div class="flow-row">
           <div class="flow-level">N1</div>
-          <div class="flow-card" contenteditable="true">
+          <div class="flow-card">
             <span class="fc-role">Suporte / Plantonista</span>
             <span class="fc-time">até 10 min</span>
             <span class="fc-action">+5 min diagnóstico</span>
@@ -665,7 +660,7 @@
         <div class="flow-arrow">↓</div>
         <div class="flow-row">
           <div class="flow-level">N2</div>
-          <div class="flow-card" contenteditable="true">
+          <div class="flow-card">
             <span class="fc-role">Suporte / Analista</span>
             <span class="fc-time">até 15 min</span>
             <span class="fc-action">Análise detalhada</span>
@@ -674,7 +669,7 @@
         <div class="flow-arrow">↓</div>
         <div class="flow-row">
           <div class="flow-level">N3</div>
-          <div class="flow-card" contenteditable="true">
+          <div class="flow-card">
             <span class="fc-role">SRE — Resolução Técnica</span>
             <span class="fc-time">até 30 min</span>
             <span class="fc-action">Ajuste paliativo/definitivo</span>
@@ -698,7 +693,7 @@
             </div>
             <span>Padrão de Acionamento via WhatsApp — EMERGÊNCIA</span>
           </div>
-          <div class="template-msg" contenteditable="true">
+          <div class="template-msg">
             <span class="em-title">🚨 EMERGÊNCIA ATIVA 🚨</span>
             <span class="field"><strong>Tipo:</strong> [Bug Fiscal / Sistema Fora / Janela Crítica / Recorrência]</span>
             <span class="field"><strong>Cliente:</strong> [Nome]</span>
